@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>招商永隆保險 - 目录树配置</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--bg:#f0f2f5;--pc:#c92439;--ph:#ca2c40;--pl:#FAEBED}
+    body{margin:0;padding:0;background:var(--bg);color:#303133;font-family:"Noto Sans SC","SourceHanSansSC","Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}
+    .el-button--primary{background:var(--pc);border-color:var(--pc)}.el-button--primary:hover{background:var(--ph);border-color:var(--ph)}
+    ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#c0c4cc;border-radius:4px}
+    .ims-card{background:#fff;border:0;border-radius:0;box-shadow:none}
+    .ims-section-title{display:flex;align-items:center;font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:14px;color:#666666;font-weight:400}
+    
+    .ims-muted{color:#94a3b8}.ims-code{font-family:inherit;background:none;padding:0;border-radius:0;border:none;font-size:inherit;color:inherit}
+    .ims-tree{border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fff}
+.home-menu .el-menu-item{height:44px!important;line-height:44px!important;font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:16px!important;color:#333333!important;margin:2px 8px!important;border-radius:6px!important;transition:all .2s!important}.home-menu .el-menu-item:hover{background:transparent!important;color:#c92439!important}.home-menu .el-menu-item.is-active{background:#ca2c40!important;color:#fff!important;font-weight:bold!important}
+    .header-gray-table th{background:#f8fafc!important;color:#666666!important;font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-weight:bold!important;font-size:14px!important;border:1px solid #e2e8f0!important}
+    .custom-table td{border:1px solid #e2e8f0!important}.custom-table::before{display:none}
+    .no-footer-dialog .el-dialog__footer{display:none!important}
+  .ims-nav{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif}.ims-nav-tab{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:18px;color:#333333}.ims-nav-tab:hover{color:#c92439!important}.ims-nav-tab.active{font-weight:bold;color:#c92439}.ims-nav-tab.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:#c92439}.ims-lang-switch{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:14px!important;color:#333333!important;border-color:#c92439!important}.ims-lang-switch:hover{background:#FAEBED!important}.el-dropdown-menu__item.ims-lang-item{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:13px!important;color:#333333!important}
+  .custom-table .el-table__body,.custom-table .el-table__header{border-collapse:collapse}.custom-table::before{display:none}.custom-table .el-table__header th,.custom-table .el-table__body td{border:1px solid #e2e8f0!important}.ims-filter-bar{background:#fff;border-radius:6px!important;border:1px solid #e2e8f0!important;padding:12px 16px!important}.ims-filter-bar .el-input__inner,.ims-filter-bar .el-select .el-input__inner{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:14px;color:#666666}.ims-filter-bar span{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:14px!important;color:#666666}.ims-filter-bar .el-button{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:13px}.ims-filter-bar .el-button--primary{background:#ca2c40!important;border-color:#ca2c40!important;color:#fff!important}.ims-filter-bar .el-button--primary span{color:#fff!important}.ims-filter-bar .el-button--default{background:#fff!important;border-color:#e2e8f0!important;color:#c92439!important}.ims-filter-bar .el-button--default span{color:#c92439!important}.ims-filter-bar .el-button--default:hover{background:#FAEBED!important;border-color:#c92439!important}.ims-breadcrumb{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:14px;color:#666666;margin-bottom:8px}.ims-breadcrumb .sep{margin:0 8px;color:#ccc}.ims-btn-create{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:13px!important;background:#fff!important;border:1px solid #e2e8f0!important;color:#c92439!important;margin-bottom:8px}.ims-btn-create span{color:#c92439!important}.ims-btn-create:hover{background:#FAEBED!important;border-color:#c92439!important}.el-pagination,.el-pagination button,.el-pagination li,.el-pagination span,.el-pagination .el-input__inner{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:13px!important;color:#666666!important}.el-pagination .el-pager li.active{background:#ca2c40!important;color:#fff!important}.el-pagination .el-select .el-input.is-focus .el-input__inner,.el-pagination .el-input__inner:focus{border-color:#c92439!important}.el-pagination.is-background .el-pager li:not(.disabled).active{background:#ca2c40!important}
+  .custom-table .el-table__header th,.custom-table .el-table__body td{text-align:left!important}
+  .ims-content-card{background:#fff;border-radius:6px;padding:16px 20px;margin-bottom:0}
+  .el-pagination.is-background .el-pager li:not(.disabled):not(.active){background-color:#f4f4f5!important}.el-pagination.is-background .el-pager li:not(.disabled).active{background-color:#ca2c40!important;color:#fff!important}.el-pagination .el-pager li:hover{color:#c92439!important}.el-pagination button:hover{color:#c92439!important}.el-input__inner:focus{border-color:#c92439!important}.el-select .el-input.is-focus .el-input__inner{border-color:#c92439!important}.el-select .el-input__inner:focus{border-color:#c92439!important}.el-textarea__inner:focus{border-color:#c92439!important}.el-checkbox__input.is-checked .el-checkbox__inner{background-color:#c92439!important;border-color:#c92439!important}.el-checkbox__input.is-checked+.el-checkbox__label{color:#c92439!important}.el-switch.is-checked .el-switch__core{background-color:#c92439!important;border-color:#c92439!important}.el-radio__input.is-checked .el-radio__inner{background-color:#c92439!important;border-color:#c92439!important}.el-radio__input.is-checked+.el-radio__label{color:#c92439!important}.el-tag--info{background-color:#f4f4f5!important;border-color:#e9e9eb!important;color:#666!important}.el-link--primary{color:#c92439!important}.el-dropdown-menu__item:hover{background-color:#FAEBED!important;color:#c92439!important}.el-button--primary{background-color:#ca2c40!important;border-color:#ca2c40!important}.el-button--primary:hover{background-color:#c92439!important;border-color:#c92439!important}.el-menu-item.is-active{color:#c92439!important}
+  </style>
+</head>
+<body>
+<div id="app" class="h-screen flex flex-col overflow-hidden bg-[#f0f2f5]">
+  <div class="h-[80px] bg-white flex items-center justify-between px-5 text-[#333] shrink-0 relative z-20 border-b border-[#e2e8f0]">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center"><img src="https://www.cmbwinglunginsurance.com/upload/cmsupload/CMBWLI-LOGO2022032215174520220322151745.JPG" alt="CMB Wing Lung Insurance" style="height:48px;object-fit:contain"></div>
+      <div class="flex items-end gap-2 border-l border-gray-300 pl-4 ml-1">
+        <span class="text-[18px] font-bold tracking-wider ims-nav" style="color:#333333">{{ t('appName') }}</span>
+        <span class="text-[14px] text-[#666666] ims-nav">{{ t('appSubtitle') }}</span>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center text-[18px] absolute left-1/2 -translate-x-1/2 h-full">
+      <div v-for="tab in topTabs" :key="tab.key" class="px-5 h-full flex items-center cursor-pointer transition-colors relative ims-nav-tab"
+        :class="activeTopTab===tab.key?'active':'ims-nav-tab'"
+        @click="goPage(tab.route)">{{ t(tab.labelKey) }}
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-3 text-[13px] text-gray-500">
+      <el-dropdown @command="lang=$event" trigger="click">
+        <span class="cursor-pointer flex items-center gap-1 px-2 py-1 rounded border ims-lang-switch" style="color:#333333!important">
+          <i class="el-icon-earth"></i> {{ lang==='zh-CN'?'简':lang==='zh-TW'?'繁':'En' }} <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="zh-CN" class="ims-lang-item">简体中文</el-dropdown-item>
+          <el-dropdown-item command="zh-TW" class="ims-lang-item">繁體中文</el-dropdown-item>
+          <el-dropdown-item command="en" class="ims-lang-item">English</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>{{ currentUser.name }}</span>
+      <div class="w-8 h-8 rounded-full bg-[#c92439] flex items-center justify-center text-white cursor-pointer"><i class="el-icon-user-solid"></i></div>
+    </div>
+  </div>
+  <div class="flex flex-1 overflow-hidden">
+    <div class="w-[220px] bg-white shrink-0 flex flex-col overflow-y-auto border-r z-10 pt-2">
+      
+      <el-menu default-active="adminCenter" class="border-none !bg-transparent flex-1 home-menu" text-color="#333333" active-text-color="#ffffff"><el-menu-item index="adminCenter">{{ t('menuAdminCenter') }}</el-menu-item><el-menu-item index="bizTypeManagement" @click="goPage('biz-type-management.html')">{{ t('menuBizTypeManagement') }}</el-menu-item></el-menu>
+      
+    </div>
+    <div class="flex-1 overflow-hidden pt-2 pr-4 pb-6 pl-4 flex flex-col" style="min-height:100%">
+      <div class="ims-breadcrumb">{{ t('topAdmin') }}<span class="sep">/</span>{{ t('menuAdminCenter') }}</div>
+<div class="flex items-center flex-wrap gap-4 ims-filter-bar"><span class="text-[13px] font-medium text-[#475569]">{{ t('bizTypeName') }}</span><el-select v-model="filterBizType" :placeholder="t('bizTypePlaceholder')" clearable size="small" class="w-40 shadow-sm"><el-option v-for="b in bizTypeOptions" :key="b.code" :label="t(b.nameKey)" :value="b.code"></el-option><el-option :label="t('customBizType')" value="__custom__"></el-option></el-select><span class="text-[13px] font-medium text-[#475569]">{{ t('dirName') }}</span><el-input size="small" v-model="filterKeyword" :placeholder="t('dirNamePlaceholder')" class="w-56 shadow-sm"></el-input><div style="margin-left:auto;display:flex;gap:8px"><el-button type="primary" size="small" icon="el-icon-search" @click="currentPage=1">{{ t('cqBtnSearch') }}</el-button><el-button size="small" icon="el-icon-refresh" @click="filterBizType='';filterKeyword='';currentPage=1">{{ t('cqBtnReset') }}</el-button></div></div>
+      <div class="ims-content-card" style="flex:1;display:flex;flex-direction:column">
+      <div class="mb-3"><el-button size="small" class="ims-btn-create" icon="el-icon-plus" @click="openCreate">{{ t('btnCreateTemplate') }}</el-button></div>
+        <el-table :data="pagedTemplates" class="header-gray-table custom-table" style="width:100%;flex:1;height:0">
+          <el-table-column type="index" :label="t('colIndex')" width="60"></el-table-column>
+          <el-table-column prop="bizTypeName" :label="t('bizTypeName')" min-width="140">
+            <template slot-scope="s"><span class="font-bold text-sm">{{ s.row.bizTypeName }}</span></template>
+          </el-table-column>
+          <el-table-column prop="pkgName" :label="t('pkgName')" min-width="140">
+            <template slot-scope="s"><span class="text-sm">{{ s.row.pkgName||'材料包' }}</span></template>
+          </el-table-column>
+          <el-table-column :label="t('materialTypes')" min-width="180">
+            <template slot-scope="s"><span class="text-sm text-[#475569]">{{ s.row._matList||'—' }}</span></template>
+          </el-table-column>
+          <el-table-column :label="t('docTypes')" min-width="200">
+            <template slot-scope="s"><span class="text-sm text-[#475569]">{{ s.row._docList||'—' }}</span></template>
+          </el-table-column>
+          <el-table-column :label="t('colActions')" width="200" fixed="right">
+            <template slot-scope="s">
+              <div class="flex items-center gap-3">
+                <span class="cursor-pointer font-bold text-[13px]" style="color:#1890ff" @click="viewTemplateByRow(s.row)">{{ t('viewTree') }}</span>
+                <span class="cursor-pointer font-bold text-[13px]" style="color:#1890ff" @click="editTemplateByRow(s.row)">{{ t('edit') }}</span>
+                <span class="cursor-pointer text-[#fca5a5] font-bold text-[13px]" @click="deleteTemplateByRow(s.row)">{{ t('actDelete') }}</span>
+              </div>
+            </template>
+          </el-table-column>
+        </el-table><div class="flex justify-end mt-4"><el-pagination background layout="total,sizes,prev,pager,next,jumper" :total="filteredTemplates.length" :page-size="pageSize" :current-page.sync="currentPage" :page-sizes="[5,10,20]" small></el-pagination></div>
+      </div>
+    </div>
+
+  <el-dialog :title="editIdx===null?t('btnCreateTemplate'):t('editTemplate')" :visible.sync="dialogVisible" width="760px" :close-on-click-modal="false" top="3vh" class="no-footer-dialog">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div><div class="text-xs text-[#64748b] mb-1">{{ t('bizTypeName') }}</div>
+        <el-select v-model="form.bizType" :placeholder="t('bizTypePlaceholder')" class="w-full" size="small" @change="onCreateBizChange">
+          <el-option v-for="b in bizTypeOptions" :key="b.code" :label="t(b.nameKey)" :value="b.code"></el-option>
+          <el-option :label="t('customBizType')" value="__custom__"></el-option>
+        </el-select>
+      </div>
+      <div v-if="form.bizType==='__custom__'"><div class="text-xs text-[#64748b] mb-1">{{ t('customBizTypeInput') }}</div>
+        <el-input size="small" v-model="form.customBizType" :placeholder="t('customBizTypePlaceholder')"></el-input>
+      </div>
+    </div>
+    <div class="border rounded-xl p-4" style="min-height:300px">
+      <div class="flex items-center gap-2 mb-3 pb-2 border-b">
+        <i class="el-icon-folder-opened text-[#c92439] text-lg"></i>
+        <el-input size="mini" v-model="form.pkgName" :placeholder="t('rootLabel')" class="flex-1" style="max-width:200px;font-weight:bold"></el-input>
+        <el-button size="mini" type="primary" @click="addDirChild(null)" round plain>{{ t('addDirNode') }}</el-button>
+      </div>
+      <div class="ml-6 pl-4 border-l-2 border-[#e2e8f0]">
+        <div v-if="!form.tree.length" class="text-xs text-[#cbd5e1] py-3 pl-2">{{ t('noDirNodesHint') }}</div>
+        <div v-for="(dir, di) in form.tree" :key="di" class="mb-2">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-4 h-px bg-[#e2e8f0] shrink-0"></div>
+            <i class="el-icon-folder text-[#c92439] text-sm"></i>
+            <el-input size="mini" v-model="dir.name" :placeholder="t('dirNodePlaceholder')" class="flex-1" style="max-width:180px"></el-input>
+            <el-button size="mini" type="text" class="text-[#c92439]" @click="addDirChild(di)"></el-button>
+            <el-button size="mini" type="text" icon="el-icon-close" class="text-[#cbd5e1]" @click="form.tree.splice(di,1)"></el-button>
+          </div>
+          <div v-if="dir.children&&dir.children.length" class="ml-6 pl-4 border-l-2 border-[#e2e8f0]">
+            <div v-for="(sub, si) in dir.children" :key="si" class="flex items-center gap-2 mb-1">
+              <div class="w-4 h-px bg-[#e2e8f0] shrink-0"></div>
+              <i class="el-icon-document text-sm text-[#94a3b8]"></i>
+              <el-input size="mini" v-model="sub.name" :placeholder="t('docTypePlaceholder')" class="flex-1" style="max-width:160px"></el-input>
+              <el-button size="mini" type="text" icon="el-icon-close" class="text-[#cbd5e1]" @click="dir.children.splice(si,1)"></el-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-3">
+      <el-button size="small" @click="dialogVisible=false">{{ t('cancel') }}</el-button>
+      <el-button size="small" type="primary" @click="saveTemplate">{{ t('save') }}</el-button>
+    </div>
+  </el-dialog>
+
+  <el-dialog :title="viewTemplate?viewTemplate.bizTypeName:t('viewTree')" :visible.sync="viewVisible" width="480px" :append-to-body="true" class="no-footer-dialog">
+    <div v-if="viewTemplate" class="ims-tree">
+      <el-tree :data="[viewTreeData]" node-key="id" :default-expanded-keys="viewExpandedKeys"></el-tree>
+    </div>
+    <div v-else class="text-center py-8 text-sm ims-muted">{{ t('noTemplates') }}</div>
+    <div class="flex justify-center mt-3">
+      <el-button size="small" type="primary" @click="viewVisible=false">{{ t('close') }}</el-button>
+    </div>
+  </el-dialog>
+</div>
+
+<script>
+var I = {
+  'zh-CN':{appName:'招商永隆保险',appSubtitle:'影像系统原型',topHome:'影像调阅',topLifecycle:'生命周期',topAdmin:'管理配置',topAudit:'审计合规',topIntegration:'对外集成',menuTitle:'菜单',menuBizRead:'影像调阅',menuCaseQuery:'业务单查询',menuCaseDetail:'业务单详情',menuLifecycle:'生命周期',menuRecycleBin:'回收站',menuAdmin:'管理配置',menuAdminCenter:'目录树配置',menuBizTypeManagement:'业务类型管理',menuAudit:'审计合规',menuAuditLogs:'日志查询',menuIntegration:'对外集成',menuIntegrationCenter:'接口管理',adminTabTree:'目录树配置',adminTreeSubtitle:'按业务类型配置目录树模板。',btnCreateTemplate:'新增模板',editTemplate:'编辑模板',viewTree:'查看目录树',loadFromQuery:'从业务单加载',noSavedData:'暂无可加载数据',bizTypeName:'业务类型名称',bizTypePlaceholder:'选择业务类型',customBizType:'自定义',customBizTypeInput:'自定义业务类型名称',customBizTypePlaceholder:'请输入业务类型名称',description:'描述',descriptionPlaceholder:'请输入模板描述',pkgName:'材料包名称',pkgNamePlaceholder:'请输入材料包名称',dirName:'目录名称',dirNamePlaceholder:'输入关键词模糊搜索',addDirNode:'新增节点',dirNodePlaceholder:'节点名称',rootLabel:'材料包',noDirNodesHint:'点击上方按钮新增目录节点',noTemplates:'暂无模板',actDelete:'删除',edit:'编辑',save:'保存',cancel:'取消',close:'关闭',confirmDelete:'确定删除此模板？',colActions:'操作',colIndex:'编号',materialTypes:'一级目录',docTypes:'二级目录',docTypePlaceholder:'单据类型名称',cqBtnSearch:'查询',cqBtnReset:'重置',bizTypeUWInquiry:'承保-询价',bizTypeUWApplication:'承保-投保',bizTypeUWTemp:'承保-暂保',bizTypeUWPolicy:'承保-保单',bizTypeEndorsement:'批改-批改',bizTypeClaimReport:'理赔-报案',bizTypePayment:'收付-收付登记',bizTypeReinsurance:'再保-分保',stubMsg:'（原型占位）',saveSuccess:'保存成功'},
+  'zh-TW':{appName:'招商永隆保險',appSubtitle:'影像系統原型',topHome:'影像調閱',topLifecycle:'生命週期',topAdmin:'管理配置',topAudit:'審計合規',topIntegration:'對外集成',menuTitle:'菜單',menuBizRead:'影像調閱',menuCaseQuery:'業務單查詢',menuCaseDetail:'業務單詳情',menuLifecycle:'生命週期',menuRecycleBin:'回收站',menuAdmin:'管理配置',menuAdminCenter:'目錄樹配置',menuBizTypeManagement:'業務類型管理',menuAudit:'審計合規',menuAuditLogs:'日誌查詢',menuIntegration:'對外集成',menuIntegrationCenter:'接口管理',adminTabTree:'目錄樹配置',adminTreeSubtitle:'按業務類型配置目錄樹模板。',btnCreateTemplate:'新增模板',editTemplate:'編輯模板',viewTree:'查看目錄樹',loadFromQuery:'從業務單載入',noSavedData:'暫無可載入數據',bizTypeName:'業務類型名稱',bizTypePlaceholder:'選擇業務類型',customBizType:'自定義',customBizTypeInput:'自定義業務類型名稱',customBizTypePlaceholder:'請輸入業務類型名稱',description:'描述',descriptionPlaceholder:'請輸入模板描述',pkgName:'材料包名稱',pkgNamePlaceholder:'請輸入材料包名稱',dirName:'目錄名稱',dirNamePlaceholder:'輸入關鍵詞模糊搜索',addDirNode:'新增節點',dirNodePlaceholder:'節點名稱',rootLabel:'材料包',noDirNodesHint:'點擊上方按鈕新增目錄節點',noTemplates:'暫無模板',actDelete:'刪除',edit:'編輯',save:'保存',cancel:'取消',close:'關閉',confirmDelete:'確定刪除此模板？',colActions:'操作',colIndex:'編號',materialTypes:'一級目錄',docTypes:'二級目錄',docTypePlaceholder:'單據類型名稱',cqBtnSearch:'查詢',cqBtnReset:'重置',bizTypeUWInquiry:'承保-询价',bizTypeUWApplication:'承保-投保',bizTypeUWTemp:'承保-暫保',bizTypeUWPolicy:'承保-保單',bizTypeEndorsement:'批改-批改',bizTypeClaimReport:'理赔-報案',bizTypePayment:'收付-收付登記',bizTypeReinsurance:'再保-分保',stubMsg:'（原型佔位）',saveSuccess:'保存成功'},
+  'en':{appName:'CMB Wing Lung Insurance',appSubtitle:'Imaging System',topHome:'Imaging',topLifecycle:'Lifecycle',topAdmin:'Admin',topAudit:'Audit',topIntegration:'Integration',menuTitle:'Menu',menuBizRead:'Imaging',menuCaseQuery:'Case Query',menuCaseDetail:'Case Detail',menuLifecycle:'Lifecycle',menuRecycleBin:'Recycle Bin',menuAdmin:'Admin',menuAdminCenter:'Catalog Config',menuBizTypeManagement:'Biz Type Mgmt',menuAudit:'Audit',menuAuditLogs:'Audit Log',menuIntegration:'Integration',menuIntegrationCenter:'API',adminTabTree:'Catalog Config',adminTreeSubtitle:'Configure catalog tree templates.',btnCreateTemplate:'Create Template',editTemplate:'Edit Template',viewTree:'View Tree',loadFromQuery:'Load from Query',noSavedData:'No saved data',bizTypeName:'Biz Type Name',bizTypePlaceholder:'Select biz type',customBizType:'Custom',customBizTypeInput:'Custom Biz Type Name',customBizTypePlaceholder:'Enter biz type name',description:'Description',descriptionPlaceholder:'Enter description',pkgName:'Package Name',pkgNamePlaceholder:'Enter package name',dirName:'Directory',dirNamePlaceholder:'Fuzzy search',addDirNode:'Add Node',dirNodePlaceholder:'Node name',rootLabel:'Material Package',noDirNodesHint:'Click above to add nodes',noTemplates:'No templates',actDelete:'Delete',edit:'Edit',save:'Save',cancel:'Cancel',close:'Close',confirmDelete:'Delete this template?',colActions:'Actions',colIndex:'No.',materialTypes:'Level 1 Directory',docTypes:'Level 2 Directory',docTypePlaceholder:'Bill type name',cqBtnSearch:'Search',cqBtnReset:'Reset',bizTypeUWInquiry:'UW-Inquiry',bizTypeUWApplication:'UW-Application',bizTypeUWTemp:'UW-Temp',bizTypeUWPolicy:'UW-Policy',bizTypeEndorsement:'Endorsement',bizTypeClaimReport:'Claim-Report',bizTypePayment:'Payment',bizTypeReinsurance:'Reinsurance',stubMsg:'(Prototype)',saveSuccess:'Saved'}
+};
+var topTabs=[{key:'home',labelKey:'topHome',route:'case-query.html'},{key:'admin',labelKey:'topAdmin',route:'admin-center.html'},{key:'lifecycle',labelKey:'topLifecycle',route:'lifecycle-center.html'},{key:'audit',labelKey:'topAudit',route:'audit-logs.html'},{key:'integration',labelKey:'topIntegration',route:'integration-center.html'}];
+
+new Vue({
+  el:'#app',
+  data:{
+    lang:'zh-CN',topTabs:topTabs,sidebarMenu:[{key:'adminCenter',labelKey:'menuAdminCenter',route:'#'},{key:'bizTypeManagement',labelKey:'menuBizTypeManagement',route:'biz-type-management.html'}],activeTopTab:'admin',currentUser:{name:'管理员'},
+    templates:[],dialogVisible:false,editIdx:null,viewVisible:false,viewTemplate:null,
+    filterBizType:'',filterKeyword:'',currentPage:1,pageSize:10,
+    form:{bizType:'',customBizType:'',description:'',pkgName:'',tree:[]},
+    defaultTrees:{
+      UW_INQUIRY:{pkgName:'承保材料包',tree:[{name:'投保文件',children:[{name:'投保单'},{name:'风险问卷'}]},{name:'身份文件',children:[{name:'身份证明'},{name:'营业执照'}]},{name:'财务文件',children:[{name:'财务报表'}]},{name:'其他',children:[{name:'沟通记录'}]}]},
+      UW_APPLICATION:{pkgName:'承保材料包',tree:[{name:'投保文件',children:[{name:'投保单'},{name:'风险问卷'}]},{name:'身份文件',children:[{name:'身份证明'},{name:'营业执照'}]},{name:'财务文件',children:[{name:'财务报表'}]},{name:'其他',children:[{name:'沟通记录'}]}]},
+      UW_TEMP:{pkgName:'承保材料包',tree:[{name:'暂保文件',children:[{name:'暂保单'},{name:'风险说明'}]},{name:'身份文件',children:[{name:'身份证明'}]},{name:'其他',children:[{name:'沟通记录'}]}]},
+      UW_POLICY:{pkgName:'承保材料包',tree:[{name:'保单文件',children:[{name:'保单正本'},{name:'批单'}]},{name:'身份文件',children:[{name:'身份证明'},{name:'营业执照'}]},{name:'财务文件',children:[{name:'缴费凭证'}]},{name:'其他',children:[]}]},
+      ENDORSEMENT:{pkgName:'批改材料包',tree:[{name:'批改文件',children:[{name:'批改申请书'},{name:'批改确认函'}]},{name:'保单文件',children:[{name:'原保单'}]},{name:'其他',children:[{name:'补充说明'}]}]},
+      CLAIM_REPORT:{pkgName:'理赔材料包',tree:[{name:'申请材料',children:[{name:'身份证'},{name:'保单'}]},{name:'理赔材料',children:[{name:'医疗单据'},{name:'事故证明'}]},{name:'其他材料',children:[{name:'沟通记录'}]}]},
+      PAYMENT:{pkgName:'收付材料包',tree:[{name:'收付凭证',children:[{name:'收款单'},{name:'付款单'}]},{name:'财务文件',children:[{name:'银行回单'}]},{name:'其他',children:[{name:'沟通记录'}]}]},
+      REINSURANCE:{pkgName:'再保材料包',tree:[{name:'分保文件',children:[{name:'分保合同'},{name:'风险说明'}]},{name:'保单文件',children:[{name:'原保单'}]},{name:'其他',children:[{name:'沟通记录'}]}]}
+    },
+    bizTypeOptions:[{code:'UW_INQUIRY',nameKey:'bizTypeUWInquiry'},{code:'UW_APPLICATION',nameKey:'bizTypeUWApplication'},{code:'UW_TEMP',nameKey:'bizTypeUWTemp'},{code:'UW_POLICY',nameKey:'bizTypeUWPolicy'},{code:'ENDORSEMENT',nameKey:'bizTypeEndorsement'},{code:'CLAIM_REPORT',nameKey:'bizTypeClaimReport'},{code:'PAYMENT',nameKey:'bizTypePayment'},{code:'REINSURANCE',nameKey:'bizTypeReinsurance'}]
+  },
+  computed:{
+    filteredTemplates:function(){
+      var self=this,bt=self.filterBizType,kw=(self.filterKeyword||'').trim().toLowerCase();
+      return self.templates.filter(function(t){
+        var hitBt=!bt||t.bizTypeCode===bt;
+        var hitKw=!kw||(t.pkgName||'').toLowerCase().indexOf(kw)!==-1||(t._matList||'').toLowerCase().indexOf(kw)!==-1||(t._docList||'').toLowerCase().indexOf(kw)!==-1||(t.bizTypeName||'').toLowerCase().indexOf(kw)!==-1;
+        return hitBt&&hitKw;
+      });
+    },
+    pagedTemplates:function(){
+      var start=(this.currentPage-1)*this.pageSize;
+      return this.filteredTemplates.slice(start,start+this.pageSize);
+    },
+    storageKeys:function(){
+      var keys=[];
+      try{for(var i=0;i<localStorage.length;i++)keys.push(localStorage.key(i))}catch(e){}
+      return keys.filter(function(k){return k.indexOf('ims_tree_')===0});
+    },
+    viewTreeData:function(){
+      var vt=this.viewTemplate;
+      if(!vt) return {id:'v-root',label:'',children:[]};
+      var children=[];
+      (vt.tree||[]).forEach(function(n,ni){
+        if(!n||!n.name) return;
+        var sc=[];
+        if(n.children&&n.children.length){
+          n.children.forEach(function(c,ci){
+            if(c&&c.name) sc.push({id:'v'+ni+'-s'+ci,label:c.name});
+          });
+        }
+        children.push({id:'v'+ni,label:n.name,children:sc});
+      });
+      return {id:'v-root',label:vt.pkgName||this.t('rootLabel'),children:children};
+    },
+    viewExpandedKeys:function(){
+      var keys=['v-root'];
+      var vt=this.viewTemplate;
+      if(vt&&vt.tree){
+        vt.tree.forEach(function(n,ni){
+          keys.push('v'+ni);
+          if(n.children) n.children.forEach(function(c,ci){keys.push('v'+ni+'-s'+ci);});
+        });
+      }
+      return keys;
+    }
+  },
+  mounted:function(){this.loadTemplates();this.loadCustomBizTypes();},
+  methods:{
+    t:function(k){return(I[this.lang]||I['zh-CN'])[k]||k;},
+    goPage:function(u){window.location.href=u;},
+    stub:function(m){this.$message&&this.$message.info((m||'')+this.t('stubMsg'));},
+    loadCustomBizTypes:function(){
+      try{
+        var raw=localStorage.getItem('ims_biz_types');
+        if(raw){
+          var list=JSON.parse(raw);
+          var self=this;
+          list.forEach(function(t){
+            var exists=self.bizTypeOptions.some(function(b){return b.code===t.code;});
+            if(!exists){self.bizTypeOptions.push({code:t.code,nameKey:t.name});}
+          });
+        }
+      }catch(e){}
+    },
+    loadTemplates:function(){
+      try{var r=localStorage.getItem('ims_templates');if(r)this.templates=JSON.parse(r);}catch(e){this.templates=[];}
+      if(!this.templates.length){
+        var self=this;
+        this.bizTypeOptions.forEach(function(b){
+          var dt=self.defaultTrees[b.code];
+          if(!dt) return;
+          var ms=[],ds=[];
+          (dt.tree||[]).forEach(function(n){if(n.name)ms.push(n.name);if(n.children)n.children.forEach(function(c){if(c.name)ds.push(c.name);});});
+          self.templates.push({
+            bizTypeCode:b.code,bizTypeName:self.t(b.nameKey),description:'',pkgName:dt.pkgName||'',
+            tree:JSON.parse(JSON.stringify(dt.tree||[])),
+            _matList:ms.length?ms.join('，'):'',_docList:ds.length?ds.join('，'):''
+          });
+        });
+        this.saveTemplates();
+      }else{
+        var self=this;
+        this.templates.forEach(function(t){
+          var ms=[],ds=[];
+          (t.tree||[]).forEach(function(n){
+            if(n.name)ms.push(n.name);
+            if(n.children)n.children.forEach(function(c){if(c.name)ds.push(c.name);});
+          });
+          t._matList=ms.length?ms.join('，'):'';
+          t._docList=ds.length?ds.join('，'):'';
+        });
+      }
+    },
+    saveTemplates:function(){try{localStorage.setItem('ims_templates',JSON.stringify(this.templates));}catch(e){}},
+    openCreate:function(){this.editIdx=null;this.currentPage=1;this.form={bizType:'',customBizType:'',description:'',pkgName:'',tree:[]};this.dialogVisible=true;},
+    onCreateBizChange:function(val){
+      var dt=this.defaultTrees[val];
+      if(dt){
+        this.form.pkgName=dt.pkgName||'';
+        this.form.tree=JSON.parse(JSON.stringify(dt.tree||[]));
+      }else if(val){
+        try{
+          var raw=localStorage.getItem('ims_templates');
+          if(raw){
+            var ts=JSON.parse(raw);
+            var found=ts.filter(function(t){return t.bizTypeCode===val;});
+            if(found.length){
+              var t=found[found.length-1];
+              this.form.pkgName=t.pkgName||'';
+              this.form.tree=JSON.parse(JSON.stringify(t.tree||[]));
+            }
+          }
+        }catch(e){}
+      }
+    },
+    editTemplate:function(i){
+      this.editIdx=i;
+      var t=this.templates[i];
+      var tr=JSON.parse(JSON.stringify(t.tree||[]));
+      tr.forEach(function(n){if(!n.children)n.children=[];});
+      this.form={bizType:t.bizTypeCode||'',customBizType:t.bizTypeCode==='__custom__'?t.bizTypeName:'',description:t.description||'',pkgName:t.pkgName||'',tree:tr};
+      this.dialogVisible=true;
+    },
+    saveTemplate:function(){
+      var f=this.form;
+      var name=f.bizType==='__custom__'?f.customBizType:(f.bizType?this.t(this.bizTypeOptions.find(function(b){return b.code===f.bizType}).nameKey):'');
+      if(!name){this.$message.warning('');return;}
+      var tm={bizTypeCode:f.bizType,bizTypeName:name,description:f.description||'',pkgName:f.pkgName||'',tree:JSON.parse(JSON.stringify(f.tree))};
+      var ms=[],ds=[];
+      (tm.tree||[]).forEach(function(nd){if(nd.name)ms.push(nd.name);if(nd.children)nd.children.forEach(function(c){if(c.name)ds.push(c.name);});});
+      tm._matList=ms.length?ms.join('，'):'';tm._docList=ds.length?ds.join('，'):'';
+      if(this.editIdx!==null)this.$set(this.templates,this.editIdx,tm);else this.templates.unshift(tm);
+      this.saveTemplates();if(f.bizType!=='__custom__'&&f.bizType){try{for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key.indexOf('ims_tree_')===0){var raw=localStorage.getItem(key);if(raw){var data=JSON.parse(raw);if(data.bizType===f.bizType){data.tree=JSON.parse(JSON.stringify(f.tree));data.pkgName=f.pkgName||'';localStorage.setItem(key,JSON.stringify(data));}}}}}catch(e){}}this.loadTemplates();this.syncBizTypeToRegistry(f,name);this.dialogVisible=false;this.currentPage=1;this.$message.success(this.t('saveSuccess'));
+    },
+    deleteTemplate:function(i){
+      var self=this;
+      this.$confirm(self.t('confirmDelete'),'',{type:'warning'}).then(function(){self.templates.splice(i,1);self.saveTemplates();}).catch(function(){});
+    },
+    viewTree:function(i){this.viewTemplate=this.templates[i];this.viewVisible=true;},
+    viewTemplateByRow:function(row){var i=this.templates.indexOf(row);if(i!==-1)this.viewTemplate=this.templates[i];this.viewVisible=true;},
+    editTemplateByRow:function(row){var i=this.templates.indexOf(row);if(i!==-1)this.editTemplate(i);},
+    deleteTemplateByRow:function(row){var i=this.templates.indexOf(row);if(i!==-1)this.deleteTemplate(i);},
+    addDirChild:function(pi){
+      var nd={name:'',children:[]};
+      if(pi===null)this.form.tree.push(nd);
+      else if(this.form.tree[pi]){
+        if(!this.form.tree[pi].children)this.$set(this.form.tree[pi],'children',[]);
+        this.form.tree[pi].children.push(nd);
+      }
+    },
+    loadFromStorage:function(k){
+      var self=this;
+      try{
+        var r=localStorage.getItem(k);
+        if(r){
+          var d=JSON.parse(r);
+          self.form.tree=JSON.parse(JSON.stringify(d.dirNodes||[]));
+          self.form.bizType=d.bizType||'';
+          if(!self.bizTypeOptions.find(function(b){return b.code===d.bizType})){self.form.bizType='__custom__';self.form.customBizType=d.bizType;}
+          self.dialogVisible=true;
+        }
+      }catch(e){}
+    },
+    syncBizTypeToRegistry:function(form,name){
+      if(form.bizType!=='__custom__'||!name||!name.trim()) return;
+      try{
+        var raw=localStorage.getItem('ims_biz_types');
+        var list=raw?JSON.parse(raw):[];
+        var exists=list.some(function(t){return t.name===name.trim();});
+        if(!exists){
+          list.push({code:'CUSTOM_'+Date.now(),name:name.trim(),attrs:'非标准'});
+          localStorage.setItem('ims_biz_types',JSON.stringify(list));
+        }
+      }catch(e){}
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>招商永隆保險 - 业务类型管理</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/theme-chalk/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.14/lib/index.js"></script>
+  <style>
+/* === Tailwind CDN replacement — static CSS to avoid runtime compilation === */
+*,::before,::after{box-sizing:border-box}
+/* Display */
+.hidden{display:none}.block{display:block}.flex{display:flex}
+@media(min-width:768px){.md\:flex{display:flex}}
+/* Flex */
+.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}
+.items-center{align-items:center}.items-end{align-items:flex-end}
+.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-end{justify-content:flex-end}
+.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}
+/* Position */
+.relative{position:relative}.absolute{position:absolute}.z-10{z-index:10}.z-20{z-index:20}
+.bottom-0{bottom:0}.left-0{left:0}.left-1\/2{left:50%}.-translate-x-1\/2{transform:translateX(-50%)}
+/* Overflow */
+.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}
+/* Width */
+.w-8{width:2rem}.w-32{width:8rem}.w-56{width:14rem}.w-full{width:100%}.w-\[220px\]{width:220px}
+/* Height */
+.h-8{height:2rem}.h-full{height:100%}.h-screen{height:100vh}.h-\[3px\]{height:3px}.h-\[50px\]{height:50px}.h-\[80px\]{height:80px}
+/* Padding */
+.p-6{padding:1.5rem}.p-12{padding:3rem}
+.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}
+.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}
+.py-4{padding-top:1rem;padding-bottom:1rem}.pt-2{padding-top:0.5rem}
+.pr-1{padding-right:0.25rem}.pl-4{padding-left:1rem}
+/* Margin */
+.mb-1{margin-bottom:0.25rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}
+.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.ml-1{margin-left:0.25rem}
+/* Font size/line-height */
+.text-xs{font-size:0.75rem;line-height:1rem}.text-sm{font-size:0.875rem;line-height:1.25rem}
+.text-lg{font-size:1.125rem;line-height:1.75rem}.text-5xl{font-size:3rem;line-height:1}
+.text-\[13px\]{font-size:13px}.text-\[14px\]{font-size:14px}
+.text-\[15px\]{font-size:15px}.text-\[18px\]{font-size:18px}
+/* Font weight/style */
+.font-medium{font-weight:500}.font-bold{font-weight:700}.font-serif{font-family:Georgia,Cambria,"Times New Roman",Times,serif}
+.italic{font-style:italic}.tracking-wider{letter-spacing:0.05em}.text-center{text-align:center}
+/* Text color */
+.text-white{color:#fff}.text-gray-500{color:#6b7280}.text-gray-600{color:#4b5563}
+.text-\[\#333\]{color:#333}.text-\[\#c92439\]{color:#c92439}
+.text-\[\#475569\]{color:#475569}.text-\[\#64748b\]{color:#64748b}
+.text-\[\#94a3b8\]{color:#94a3b8}.text-\[\#cbd5e1\]{color:#cbd5e1}.text-\[\#fca5a5\]{color:#fca5a5}
+.hover\:text-\[\#c92439\]:hover{color:#c92439}
+.hover\:text-\[\#ef4444\]:hover{color:#ef4444}
+/* Background */
+.bg-white{background-color:#fff}.bg-\[\#f0f2f5\]{background-color:#f0f2f5}
+.bg-\[\#c92439\]{background-color:#c92439}.bg-\[\#FAEBED\]{background-color:#FAEBED}
+.\!bg-transparent{background-color:transparent!important}
+.hover\:bg-\[\#FAEBED\]:hover{background-color:#FAEBED}
+/* Border */
+.border{border:1px solid #e5e7eb}.border-b{border-bottom:1px solid #e5e7eb}
+.border-t{border-top:1px solid #e5e7eb}.border-l{border-left:1px solid #e5e7eb}
+.border-r{border-right:1px solid #e5e7eb}.border-none{border:none}
+.border-gray-300{border-color:#d1d5db}.border-\[\#e2e8f0\]{border-color:#e2e8f0}
+.border-\[\#f1f5f9\]{border-color:#f1f5f9}.border-\[\#c92439\]{border-color:#c92439}
+.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}
+/* Shadow */
+.shadow-sm{box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05)}
+/* Cursor */
+.cursor-pointer{cursor:pointer}
+/* Transition */
+.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}
+</style>
+  <style>
+    :root{--bg:#f0f2f5;--pc:#c92439;--ph:#ca2c40;--pl:#FAEBED}
+    body{margin:0;padding:0;background:var(--bg);color:#303133;font-family:"Noto Sans SC","SourceHanSansSC","Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}
+    .el-button--primary{background:var(--pc);border-color:var(--pc)}.el-button--primary:hover{background:var(--ph);border-color:var(--ph)}
+    ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#c0c4cc;border-radius:4px}
+    .ims-card{background:#fff;border:0;border-radius:0;box-shadow:none}
+    .ims-section-title{display:flex;align-items:center;font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:14px;color:#666666;font-weight:400}
+    
+    .ims-muted{color:#94a3b8}.ims-code{font-family:inherit;background:none;padding:0;border-radius:0;border:none;font-size:inherit;color:inherit}
+.home-menu .el-menu-item{height:44px!important;line-height:44px!important;font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:16px!important;color:#333333!important;margin:2px 8px!important;border-radius:6px!important;transition:all .2s!important}.home-menu .el-menu-item:hover{background:transparent!important;color:#c92439!important}.home-menu .el-menu-item.is-active{background:#ca2c40!important;color:#fff!important;font-weight:bold!important}
+    .header-gray-table th{background:#f8fafc!important;color:#666666!important;font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-weight:bold!important;font-size:14px!important;border:1px solid #e2e8f0!important}
+    .custom-table td{border:1px solid #e2e8f0!important}.custom-table::before{display:none}
+    .no-footer-dialog .el-dialog__footer{display:none!important}
+  .ims-nav{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif}.ims-nav-tab{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:18px;color:#333333}.ims-nav-tab:hover{color:#c92439!important}.ims-nav-tab.active{font-weight:bold;color:#c92439}.ims-nav-tab.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:#c92439}.ims-lang-switch{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:14px!important;color:#333333!important;border-color:#c92439!important}.ims-lang-switch:hover{background:#FAEBED!important}.el-dropdown-menu__item.ims-lang-item{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:13px!important;color:#333333!important}
+  .custom-table .el-table__body,.custom-table .el-table__header{border-collapse:collapse}.custom-table::before{display:none}.custom-table .el-table__header th,.custom-table .el-table__body td{border:1px solid #e2e8f0!important}.ims-filter-bar{background:#fff;border-radius:6px!important;border:1px solid #e2e8f0!important;padding:12px 16px!important}.ims-filter-bar .el-input__inner,.ims-filter-bar .el-select .el-input__inner{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:14px;color:#666666}.ims-filter-bar span{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:14px!important;color:#666666}.ims-filter-bar .el-button{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:13px}.ims-filter-bar .el-button--primary{background:#ca2c40!important;border-color:#ca2c40!important;color:#fff!important}.ims-filter-bar .el-button--primary span{color:#fff!important}.ims-filter-bar .el-button--default{background:#fff!important;border-color:#e2e8f0!important;color:#c92439!important}.ims-filter-bar .el-button--default span{color:#c92439!important}.ims-filter-bar .el-button--default:hover{background:#FAEBED!important;border-color:#c92439!important}.ims-breadcrumb{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif;font-size:14px;color:#666666;margin-bottom:8px}.ims-breadcrumb .sep{margin:0 8px;color:#ccc}.ims-btn-create{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:13px!important;background:#fff!important;border:1px solid #e2e8f0!important;color:#c92439!important;margin-bottom:8px}.ims-btn-create span{color:#c92439!important}.ims-btn-create:hover{background:#FAEBED!important;border-color:#c92439!important}.el-pagination,.el-pagination button,.el-pagination li,.el-pagination span,.el-pagination .el-input__inner{font-family:"Noto Sans SC","SourceHanSansSC",sans-serif!important;font-size:13px!important;color:#666666!important}.el-pagination .el-pager li.active{background:#ca2c40!important;color:#fff!important}.el-pagination .el-select .el-input.is-focus .el-input__inner,.el-pagination .el-input__inner:focus{border-color:#c92439!important}.el-pagination.is-background .el-pager li:not(.disabled).active{background:#ca2c40!important}
+  .custom-table .el-table__header th,.custom-table .el-table__body td{text-align:left!important}
+  .ims-content-card{background:#fff;border-radius:6px;padding:16px 20px;margin-bottom:0}
+  .el-pagination.is-background .el-pager li:not(.disabled):not(.active){background-color:#f4f4f5!important}.el-pagination.is-background .el-pager li:not(.disabled).active{background-color:#ca2c40!important;color:#fff!important}.el-pagination .el-pager li:hover{color:#c92439!important}.el-pagination button:hover{color:#c92439!important}.el-input__inner:focus{border-color:#c92439!important}.el-select .el-input.is-focus .el-input__inner{border-color:#c92439!important}.el-select .el-input__inner:focus{border-color:#c92439!important}.el-textarea__inner:focus{border-color:#c92439!important}.el-checkbox__input.is-checked .el-checkbox__inner{background-color:#c92439!important;border-color:#c92439!important}.el-checkbox__input.is-checked+.el-checkbox__label{color:#c92439!important}.el-switch.is-checked .el-switch__core{background-color:#c92439!important;border-color:#c92439!important}.el-radio__input.is-checked .el-radio__inner{background-color:#c92439!important;border-color:#c92439!important}.el-radio__input.is-checked+.el-radio__label{color:#c92439!important}.el-tag--info{background-color:#f4f4f5!important;border-color:#e9e9eb!important;color:#666!important}.el-link--primary{color:#c92439!important}.el-dropdown-menu__item:hover{background-color:#FAEBED!important;color:#c92439!important}.el-button--primary{background-color:#ca2c40!important;border-color:#ca2c40!important}.el-button--primary:hover{background-color:#c92439!important;border-color:#c92439!important}.el-menu-item.is-active{color:#c92439!important}
+  </style>
+</head>
+<body>
+<div id="app" class="h-screen flex flex-col overflow-hidden bg-[#f0f2f5]">
+  <div class="h-[80px] bg-white flex items-center justify-between px-5 text-[#333] shrink-0 relative z-20 border-b border-[#e2e8f0]">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center"><img src="https://www.cmbwinglunginsurance.com/upload/cmsupload/CMBWLI-LOGO2022032215174520220322151745.JPG" alt="CMB Wing Lung Insurance" style="height:48px;object-fit:contain"></div>
+      <div class="flex items-end gap-2 border-l border-gray-300 pl-4 ml-1">
+        <span class="text-[18px] font-bold tracking-wider ims-nav" style="color:#333333">{{ t('appName') }}</span>
+        <span class="text-[14px] text-[#666666] ims-nav">{{ t('appSubtitle') }}</span>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center text-[18px] absolute left-1/2 -translate-x-1/2 h-full">
+      <div v-for="tab in topTabs" :key="tab.key" class="px-5 h-full flex items-center cursor-pointer transition-colors relative ims-nav-tab"
+        :class="activeTopTab===tab.key?'active':'ims-nav-tab'"
+        @click="goPage(tab.route)">{{ t(tab.labelKey) }}
+        
+      </div>
+    </div>
+    <div class="flex items-center gap-3 text-[13px] text-gray-500">
+      <el-dropdown @command="lang=$event" trigger="click">
+        <span class="cursor-pointer flex items-center gap-1 px-2 py-1 rounded border ims-lang-switch" style="color:#333333!important">
+          <i class="el-icon-earth"></i> {{ lang==='zh-CN'?'简':lang==='zh-TW'?'繁':'En' }} <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="zh-CN" class="ims-lang-item">简体中文</el-dropdown-item>
+          <el-dropdown-item command="zh-TW" class="ims-lang-item">繁體中文</el-dropdown-item>
+          <el-dropdown-item command="en" class="ims-lang-item">English</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>{{ currentUser.name }}</span>
+      <div class="w-8 h-8 rounded-full bg-[#c92439] flex items-center justify-center text-white cursor-pointer"><i class="el-icon-user-solid"></i></div>
+    </div>
+  </div>
+  <div class="flex flex-1 overflow-hidden">
+    <div class="w-[220px] bg-white shrink-0 flex flex-col overflow-y-auto border-r z-10 pt-2">
+      
+      <el-menu default-active="bizTypeManagement" class="border-none !bg-transparent flex-1 home-menu" text-color="#333333" active-text-color="#ffffff"><el-menu-item index="adminCenter" @click="goPage('admin-center.html')">{{ t('menuAdminCenter') }}</el-menu-item><el-menu-item index="bizTypeManagement">{{ t('menuBizTypeManagement') }}</el-menu-item></el-menu>
+      
+    </div>
+    <div class="flex-1 overflow-hidden pt-2 pr-4 pb-6 pl-4 flex flex-col" style="min-height:100%">
+      <div class="ims-breadcrumb">{{ t('topAdmin') }}<span class="sep">/</span>{{ t('menuBizTypeManagement') }}</div>
+<div class="flex items-center flex-wrap gap-4 ims-filter-bar"><span class="text-[13px] font-medium text-[#475569]">{{ t('bizTypeName') }}</span><el-input size="small" v-model="filterKeyword" :placeholder="t('bizTypeFilterPlaceholder')" class="w-56 shadow-sm"></el-input><span class="text-[13px] font-medium text-[#475569]">{{ t('bizTypeAttr') }}</span><el-select size="small" v-model="filterAttr" :placeholder="t('attrAll')" clearable class="w-32 shadow-sm"><el-option :label="t('attrStandard')" value="标准"></el-option><el-option :label="t('attrNonStandard')" value="非标准"></el-option></el-select><div style="margin-left:auto;display:flex;gap:8px"><el-button type="primary" size="small" icon="el-icon-search" @click="currentPage=1">{{ t('cqBtnSearch') }}</el-button><el-button size="small" icon="el-icon-refresh" @click="filterKeyword='';filterAttr='';currentPage=1">{{ t('cqBtnReset') }}</el-button></div></div>
+      <div class="ims-content-card" style="flex:1;display:flex;flex-direction:column">
+      <div class="mb-3"><el-button size="small" class="ims-btn-create" icon="el-icon-plus" @click="openCreate">{{ t('btnAddBizType') }}</el-button></div>
+        <el-table :data="pagedList" max-height="530" class="header-gray-table custom-table" style="width:100%">
+          <el-table-column type="index" :label="t('colIndex')" width="60"></el-table-column>
+          <el-table-column prop="bizCode" :label="t('colBizCode')" width="100">
+            <template slot-scope="s"><span class="ims-code">{{ s.row.bizCode }}</span></template>
+          </el-table-column>
+          <el-table-column prop="name" :label="t('bizTypeName')" min-width="180">
+            <template slot-scope="s"><span class="font-bold text-sm">{{ s.row.name }}</span></template>
+          </el-table-column>
+          <el-table-column prop="attrs" :label="t('bizTypeAttr')" min-width="140">
+            <template slot-scope="s">
+              <el-tag size="small" :type="s.row.attrs==='标准'?'':'info'" effect="light">{{ s.row.attrs }}</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column :label="t('colActions')" width="160" fixed="right">
+            <template slot-scope="s">
+              <div class="flex items-center gap-3">
+                <span class="cursor-pointer font-bold text-[13px]" style="color:#1890ff" @click="editRow(s.row)">{{ t('edit') }}</span>
+                <span v-if="s.row.attrs!=='标准'" class="cursor-pointer text-[#fca5a5] hover:text-[#ef4444] font-bold text-[13px]" @click="deleteRow(s.row)">{{ t('actDelete') }}</span>
+                <el-tooltip v-else content="标准类型不可删除" placement="top"><span class="text-[#cbd5e1] text-[13px]">{{ t('actDelete') }}</span></el-tooltip>
+              </div>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div class="flex justify-end mt-4">
+          <el-pagination background layout="total,sizes,prev,pager,next,jumper" :total="filteredList.length" :page-size="pageSize" :current-page.sync="currentPage" :page-sizes="[5,10,20]" small></el-pagination>
+        </div>
+      </div>
+    </div>
+
+  <el-dialog :title="editIdx===null&&!editIsBuiltin?t('btnAddBizType'):t('editBizType')" :visible.sync="dialogVisible" width="520px" :close-on-click-modal="false" top="15vh" class="no-footer-dialog">
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:16px">
+      <div><div class="text-xs text-[#64748b] mb-1">{{ t('colBizCode') }}</div>
+          <el-input size="small" v-model="form.bizCode" placeholder="U1"></el-input>
+        </div>
+        <div><div class="text-xs text-[#64748b] mb-1">{{ t('bizTypeName') }} <span class="text-[#c92439]">*</span></div>
+        <el-input size="small" v-model="form.name" :placeholder="t('bizTypeNamePlaceholder')"></el-input>
+      </div>
+      <div><div class="text-xs text-[#64748b] mb-1">{{ t('bizTypeAttr') }}</div>
+        <el-select size="small" v-model="form.attrs" :placeholder="t('bizTypeAttrPlaceholder')" class="w-full">
+          <el-option :label="t('attrStandard')" value="标准"></el-option>
+          <el-option :label="t('attrNonStandard')" value="非标准"></el-option>
+        </el-select>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-3">
+      <el-button size="small" @click="dialogVisible=false">{{ t('cancel') }}</el-button>
+      <el-button size="small" type="primary" @click="save">{{ t('save') }}</el-button>
+    </div>
+  </el-dialog>
+</div>
+
+<script>
+var I = {
+  'zh-CN':{appName:'招商永隆保险',appSubtitle:'影像系统原型',topHome:'影像调阅',topLifecycle:'生命周期',topAdmin:'管理配置',topAudit:'审计合规',topIntegration:'对外集成',menuTitle:'菜单',menuBizRead:'影像调阅',menuCaseQuery:'业务单查询',menuCaseDetail:'业务单详情',menuLifecycle:'生命周期',menuRecycleBin:'回收站',menuAdmin:'管理配置',menuAdminCenter:'目录树配置',menuBizTypeManagement:'业务类型管理',menuAudit:'审计合规',menuAuditLogs:'日志查询',menuIntegration:'对外集成',menuIntegrationCenter:'接口管理',bizTypeManagementTitle:'业务类型管理',bizTypeManagementSubtitle:'管理系统中的业务类型，标准类型不可删除。',btnAddBizType:'新增业务类型',editBizType:'编辑业务类型',bizTypeName:'业务类型',bizTypeAttr:'属性',bizTypeFilterPlaceholder:'输入业务类型关键词',bizTypeAttrPlaceholder:'请选择属性',bizTypeNamePlaceholder:'请输入业务类型名称',noBizTypes:'暂无业务类型',actDelete:'删除',edit:'编辑',save:'保存',cancel:'取消',colActions:'操作',colIndex:'编号',cqBtnSearch:'查询',cqBtnReset:'重置',confirmDeleteBizType:'确定删除此业务类型？相关模板和业务单不受影响。',attrStandard:'标准',attrNonStandard:'非标准',attrAll:'全部',stubMsg:'（原型占位）',colBizCode:'业务编码'},
+  'zh-TW':{appName:'招商永隆保險',appSubtitle:'影像系統原型',topHome:'影像調閱',topLifecycle:'生命週期',topAdmin:'管理配置',topAudit:'審計合規',topIntegration:'對外集成',menuTitle:'菜單',menuBizRead:'影像調閱',menuCaseQuery:'業務單查詢',menuCaseDetail:'業務單詳情',menuLifecycle:'生命週期',menuRecycleBin:'回收站',menuAdmin:'管理配置',menuAdminCenter:'目錄樹配置',menuBizTypeManagement:'業務類型管理',menuAudit:'審計合規',menuAuditLogs:'日誌查詢',menuIntegration:'對外集成',menuIntegrationCenter:'接口管理',bizTypeManagementTitle:'業務類型管理',bizTypeManagementSubtitle:'管理系統中的業務類型，標準類型不可刪除。',btnAddBizType:'新增業務類型',editBizType:'編輯業務類型',bizTypeName:'業務類型',bizTypeAttr:'屬性',bizTypeFilterPlaceholder:'輸入業務類型關鍵詞',bizTypeAttrPlaceholder:'請選擇屬性',bizTypeNamePlaceholder:'請輸入業務類型名稱',noBizTypes:'暫無業務類型',actDelete:'刪除',edit:'編輯',save:'保存',cancel:'取消',colActions:'操作',colIndex:'編號',cqBtnSearch:'查詢',cqBtnReset:'重置',confirmDeleteBizType:'確定刪除此業務類型？相關模板和業務單不受影響。',attrStandard:'標準',attrNonStandard:'非標準',attrAll:'全部',stubMsg:'（原型佔位）',colBizCode:'業務編碼'},
+  'en':{appName:'CMB Wing Lung Insurance',appSubtitle:'Imaging System',topHome:'Imaging',topLifecycle:'Lifecycle',topAdmin:'Admin',topAudit:'Audit',topIntegration:'Integration',menuTitle:'Menu',menuBizRead:'Imaging',menuCaseQuery:'Case Query',menuCaseDetail:'Case Detail',menuLifecycle:'Lifecycle',menuRecycleBin:'Recycle Bin',menuAdmin:'Admin',menuAdminCenter:'Catalog Config',menuBizTypeManagement:'Biz Type Mgmt',menuAudit:'Audit',menuAuditLogs:'Audit Log',menuIntegration:'Integration',menuIntegrationCenter:'API',bizTypeManagementTitle:'Business Type Management',bizTypeManagementSubtitle:'Manage business types. Standard types cannot be deleted.',btnAddBizType:'Add Biz Type',editBizType:'Edit Biz Type',bizTypeName:'Business Type',bizTypeAttr:'Attribute',bizTypeFilterPlaceholder:'Search by keyword',bizTypeAttrPlaceholder:'Select attribute',bizTypeNamePlaceholder:'Enter business type name',noBizTypes:'No business types',actDelete:'Delete',edit:'Edit',save:'Save',cancel:'Cancel',colActions:'Actions',colIndex:'No.',cqBtnSearch:'Search',cqBtnReset:'Reset',confirmDeleteBizType:'Delete this business type? Templates and cases are unaffected.',attrStandard:'Standard',attrNonStandard:'Non-standard',attrAll:'All',stubMsg:'(Prototype)',colBizCode:'Biz Code'}
+};
+var topTabs=[{key:'home',labelKey:'topHome',route:'case-query.html'},{key:'admin',labelKey:'topAdmin',route:'admin-center.html'},{key:'lifecycle',labelKey:'topLifecycle',route:'lifecycle-center.html'},{key:'audit',labelKey:'topAudit',route:'audit-logs.html'},{key:'integration',labelKey:'topIntegration',route:'integration-center.html'}];
+
+var BUILTIN_BIZ_TYPES = ['UW_INQUIRY','UW_APPLICATION','UW_TEMP','UW_POLICY','ENDORSEMENT','CLAIM_REPORT','PAYMENT','REINSURANCE'];
+var BUILTIN_NAMES = {
+  'zh-CN':{UW_INQUIRY:'承保-询价',UW_APPLICATION:'承保-投保',UW_TEMP:'承保-暂保',UW_POLICY:'承保-保单',ENDORSEMENT:'批改-批改',CLAIM_REPORT:'理赔-报案',PAYMENT:'收付-收付登记',REINSURANCE:'再保-分保'},
+  'zh-TW':{UW_INQUIRY:'承保-询价',UW_APPLICATION:'承保-投保',UW_TEMP:'承保-暫保',UW_POLICY:'承保-保單',ENDORSEMENT:'批改-批改',CLAIM_REPORT:'理赔-報案',PAYMENT:'收付-收付登記',REINSURANCE:'再保-分保'},
+  'en':{UW_INQUIRY:'UW-Inquiry',UW_APPLICATION:'UW-Application',UW_TEMP:'UW-Temp',UW_POLICY:'UW-Policy',ENDORSEMENT:'Endorsement',CLAIM_REPORT:'Claim-Report',PAYMENT:'Payment',REINSURANCE:'Reinsurance'}
+};
+
+var BIZ_TYPE_CODES={UW_INQUIRY:'U1',UW_APPLICATION:'U5',UW_TEMP:'U*',UW_POLICY:'U6',ENDORSEMENT:'U7',CLAIM_REPORT:'C',PAYMENT:'P',REINSURANCE:'R'};
+function loadBizTypes(){
+  try{var r=localStorage.getItem('ims_biz_types');return r?JSON.parse(r):[];}catch(e){return [];}
+}
+function saveBizTypes(arr){try{localStorage.setItem('ims_biz_types',JSON.stringify(arr));}catch(e){}}
+function loadBuiltinOverrides(){
+  try{var r=localStorage.getItem('ims_builtin_biz_overrides');return r?JSON.parse(r):{};}catch(e){return {};}
+}
+function saveBuiltinOverrides(map){try{localStorage.setItem('ims_builtin_biz_overrides',JSON.stringify(map));}catch(e){}}
+function loadBuiltinAttrs(){
+  try{var r=localStorage.getItem('ims_builtin_biz_attrs');return r?JSON.parse(r):{};}catch(e){return {};}
+}
+function saveBuiltinAttrs(map){try{localStorage.setItem('ims_builtin_biz_attrs',JSON.stringify(map));}catch(e){}}
+function loadBuiltinCodes(){try{var r=localStorage.getItem('ims_builtin_biz_codes');return r?JSON.parse(r):{};}catch(e){}return{};}
+function saveBuiltinCodes(map){try{localStorage.setItem('ims_builtin_biz_codes',JSON.stringify(map));}catch(e){}}
+
+new Vue({
+  el:'#app',
+  data:{
+    lang:'zh-CN',topTabs:topTabs,sidebarMenu:[{key:'adminCenter',labelKey:'menuAdminCenter',route:'admin-center.html'},{key:'bizTypeManagement',labelKey:'menuBizTypeManagement',route:'#'}],activeTopTab:'admin',currentUser:{name:'管理员'},
+    customBizTypes:[],builtinOverrides:{},builtinAttrs:{},builtinCodes:{},dialogVisible:false,editIdx:null,editIsBuiltin:false,
+    filterKeyword:'',filterAttr:'',currentPage:1,pageSize:10,
+    form:{name:'',attrs:'非标准',bizCode:''}
+  },
+  computed:{
+    allBizTypes:function(){
+      var self=this,list=[];
+      BUILTIN_BIZ_TYPES.forEach(function(code){
+        var name=self.builtinOverrides[code]||self.getBuiltinName(code);
+        list.push({code:code,name:name,attrs:self.builtinAttrs[code]||'标准',isCustom:false,bizCode:self.builtinCodes[code]||BIZ_TYPE_CODES[code]||''});
+      });
+      self.customBizTypes.forEach(function(t){list.push({code:t.code,name:t.name,attrs:t.attrs||'非标准',isCustom:true,bizCode:t.bizCode||'B'});});
+      return list;
+    },
+    filteredList:function(){
+      var self=this,kw=(self.filterKeyword||'').trim().toLowerCase(),fa=self.filterAttr;
+      return self.allBizTypes.filter(function(t){
+        var hk=!kw||(t.name||'').toLowerCase().indexOf(kw)!==-1||(t.code||'').toLowerCase().indexOf(kw)!==-1;
+        var ha=!fa||t.attrs===fa;
+        return hk&&ha;
+      });
+    },
+    pagedList:function(){
+      var start=(this.currentPage-1)*this.pageSize;
+      return this.filteredList.slice(start,start+this.pageSize);
+    }
+  },
+  mounted:function(){this.customBizTypes=loadBizTypes();this.builtinOverrides=loadBuiltinOverrides();this.builtinAttrs=loadBuiltinAttrs();this.builtinCodes=loadBuiltinCodes();},
+  methods:{
+    t:function(k){return(I[this.lang]||I['zh-CN'])[k]||k;},
+    goPage:function(u){window.location.href=u;},
+    getBuiltinName:function(code){return(I[this.lang]||I['zh-CN'])['bizType'+code.replace(/_/g,'')]||BUILTIN_NAMES['zh-CN'][code]||code;},
+    openCreate:function(){this.editIdx=null;this.editIsBuiltin=false;this.form={name:'',attrs:'非标准',bizCode:'B'};this.dialogVisible=true;},
+    editRow:function(row){
+      var self=this;
+      if(!row.isCustom){
+        self.editIsBuiltin=true;self.editIdx=row.code;
+        self.form={name:row.name,attrs:self.builtinAttrs[row.code]||'标准',bizCode:self.builtinCodes[row.code]||BIZ_TYPE_CODES[row.code]||''};
+      }else{
+        var idx=-1;
+        for(var i=0;i<self.customBizTypes.length;i++){if(self.customBizTypes[i].code===row.code){idx=i;break;}}
+        self.editIsBuiltin=false;self.editIdx=idx;
+        self.form={name:row.name,attrs:row.attrs||'非标准',bizCode:row.bizCode||'B'};
+      }
+      self.dialogVisible=true;
+    },
+    save:function(){
+      var f=this.form;
+      if(!f.name||!f.name.trim()){this.$message.warning('请输入业务类型名称');return;}
+      var name=f.name.trim(),attrs=f.attrs||'非标准',bizCode=(f.bizCode||'').trim();
+      if(this.editIsBuiltin){
+        if(name!==this.getBuiltinName(this.editIdx)){
+          this.$set(this.builtinOverrides,this.editIdx,name);
+        }else{
+          this.$delete(this.builtinOverrides,this.editIdx);
+        }
+        saveBuiltinOverrides(this.builtinOverrides);
+        if(attrs!=='标准'){
+          this.$set(this.builtinAttrs,this.editIdx,attrs);
+        }else{
+          this.$delete(this.builtinAttrs,this.editIdx);
+        }
+        saveBuiltinAttrs(this.builtinAttrs);
+        if(bizCode&&bizCode!==(BIZ_TYPE_CODES[this.editIdx]||'')){
+          this.$set(this.builtinCodes,this.editIdx,bizCode);
+        }else{
+          this.$delete(this.builtinCodes,this.editIdx);
+        }
+        saveBuiltinCodes(this.builtinCodes);
+      }else if(this.editIdx!==null && this.editIdx>=0 && this.editIdx<this.customBizTypes.length){
+        var existing=this.customBizTypes[this.editIdx];
+        existing.name=name;existing.attrs=attrs;existing.bizCode=bizCode||'B';
+        this.$set(this.customBizTypes,this.editIdx,existing);
+        saveBizTypes(this.customBizTypes);
+      }else{
+        this.customBizTypes.unshift({code:'CUSTOM_'+Date.now(),name:name,attrs:attrs,bizCode:bizCode||'B'});
+        saveBizTypes(this.customBizTypes);
+      }
+      this.dialogVisible=false;
+      this.$message.success('保存成功');
+    },
+    deleteRow:function(row){
+      var self=this;
+      var idx=-1;
+      for(var i=0;i<self.customBizTypes.length;i++){if(self.customBizTypes[i].code===row.code){idx=i;break;}}
+      if(idx===-1) return;
+      this.$confirm(self.t('confirmDeleteBizType'),'',{type:'warning'}).then(function(){
+        self.customBizTypes.splice(idx,1);
+        saveBizTypes(self.customBizTypes);
+        self.$message.success('删除成功');
+      }).catch(function(){});
+    }
+  }
+});
+</script>
+</body>
+</html>
